@@ -21,11 +21,17 @@ namespace GelecekUskudar.Helper
                 worksheet.Cells["B1"].Value = "Soyisim";
                 worksheet.Cells["C1"].Value = "Ögrenim Durumu";
                 worksheet.Cells["D1"].Value = "Ögrenci Notu";
-                worksheet.Cells["E1"].Value = "Ögretmen Yorumu";
+                worksheet.Cells["E1"].Value = "Telefon Numarası"; 
+                worksheet.Cells["F1"].Value = "Ögretmen Yorumu";
+                worksheet.Cells["G1"].Value = "Referans Mektubu";
+                worksheet.Cells["H1"].Value = "Niyet Mektubu";
 
-                worksheet.Column(3).Width = 20; // Öğrenim Durumu sütunu
+                worksheet.Column(3).Width = 15; // Öğrenim Durumu sütunu
                 worksheet.Column(4).Width = 15; // Öğrenci Notu sütunu
-                worksheet.Column(5).Width = 40;
+                worksheet.Column(5).Width = 18;
+                worksheet.Column(6).Width = 40;
+                worksheet.Column(7).Width = 20;
+                worksheet.Column(8).Width = 15;
 
                 // Verileri yazdır
                 int rowIndex = 2;
@@ -47,9 +53,29 @@ namespace GelecekUskudar.Helper
                         worksheet.Cells[rowIndex, 3].Value = "Lise";
                     }
                     
-                    worksheet.Cells[rowIndex, 4].Value = ogrenci.OgrenciNotu;
+                    worksheet.Cells[rowIndex, 4].Value = ogrenci.MulakatNotu;
                     worksheet.Cells[rowIndex, 4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells[rowIndex, 5].Value = ogrenci.OgretmenYorumu;
+                    worksheet.Cells[rowIndex, 5].Value = ogrenci.TelefonNumarasi;
+                    worksheet.Cells[rowIndex, 6].Value = ogrenci.OgretmenYorumu;
+
+                    if (ogrenci.ReferansMektubu == true)
+                    {
+                        worksheet.Cells[rowIndex, 7].Value = "Var";
+                    }
+                    else
+                    {
+                        worksheet.Cells[rowIndex, 7].Value = "Yok";
+                    }
+
+                    if (ogrenci.NiyetMektubu == true)
+                    {
+                        worksheet.Cells[rowIndex, 8].Value = "Var";
+                    }
+                    else
+                    {
+                        worksheet.Cells[rowIndex, 8].Value = "Yok";
+                    }
+
                     rowIndex++;
                 }
                 // Excel dosyasını kaydet

@@ -10,7 +10,7 @@ namespace GelecekUskudar.Controllers{
     [ApiController]
     public class Export : ControllerBase
     {
-        [HttpGet]
+       /* [HttpGet]
         public async Task<ActionResult> GetExcelFiles()
         {
             byte[] data = await ExportExcelHelper.ExportToExcel(OgrenciRepository.OgrenciData());
@@ -18,6 +18,27 @@ namespace GelecekUskudar.Controllers{
             //System.IO.File.WriteAllBytes(filePath, data);
             // return Ok(filePath);
             return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ogrenciler.xlsx");
+        }*/
+
+        [HttpGet("ilkokul")]
+        public async Task<ActionResult> GetIlkokulExcel()
+        {
+            byte[] data = await ExportExcelHelper.ExportToExcel(OgrenciRepository.IlkOkulData());
+            return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ilkokul_ogrenciler.xlsx");
+        }
+
+        [HttpGet("ortaokul")]
+        public async Task<ActionResult> GetOrtaokulExcel()
+        {
+            byte[] data = await ExportExcelHelper.ExportToExcel(OgrenciRepository.OrtaOkulData());
+            return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ortaokul_ogrenciler.xlsx");
+        }
+
+        [HttpGet("lise")]
+        public async Task<ActionResult> GetLiseExcel()
+        {
+            byte[] data = await ExportExcelHelper.ExportToExcel(OgrenciRepository.LiseData());
+            return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "lise_ogrenciler.xlsx");
         }
     }
 }

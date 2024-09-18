@@ -14,8 +14,11 @@ namespace GelecekUskudar.Controllers
         [HttpPost]
         public IActionResult basvuru(Ogrenci model)
         {
-                OgrenciRepository.addOgrenci(model);
-                return RedirectToAction("basvuru");
+            bool referansMektubu = model.ReferansMektubu;
+            bool niyetMektubu = model.NiyetMektubu;
+
+            OgrenciRepository.addOgrenci(model);
+            return RedirectToAction("basvuru");
         }
 
     }
